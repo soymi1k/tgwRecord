@@ -11,9 +11,28 @@
        <script type="text/javascript" src="jsmpeg.min.js"></script>
        <script type="text/javascript">
             var canvas = document.getElementById('chanel1');
-            var websocket = new WebSocket("ws://127.0.0.1:9999");
+            var websocket = new WebSocket("ws://127.0.0.1:9991");
             var player= new jsmpeg(websocket, {canvas:canvas, autoplay:true, loop:true})
        </script>
+    </div>
+    <div>
+        <canvas id="chanel2" width="auto" height="auto"></canvas>
+        <script type="text/javascript" src="jsmpeg.min.js"></script>
+        <script type="text/javascript">
+                var canvas = document.getElementById('chanel2');
+                var websocket = new WebSocket("ws://127.0.0.1:9992");
+                var player= new jsmpeg(websocket, {canvas:canvas, autoplay:true, loop:true})
+        </script>
+    </div>
+    <div>
+        <canvas id="chanel3" width="auto" height="auto"></canvas>
+        <script type="text/javascript" src="jsmpeg.min.js"></script>
+        <script type="text/javascript">
+                var canvas = document.getElementById('chanel3');
+                var websocket = new WebSocket("ws://127.0.0.1:9993");
+                var player= new jsmpeg(websocket, {canvas:canvas, autoplay:true, loop:true})
+        </script>
+    </div>    
    </div>
 </body>
 </html> 

@@ -1,13 +1,12 @@
+const configs = require('../cameras.config.json');
+const Stream = require('node-rtsp-stream');
 
-    //Camera Authentication
-    var ip_address = "10.0.17.11"
-    //camera username and password
-    var username = "admin";
-    var password="admin";
-
-    //A channel of camera stream
-    Stream = require('node-rtsp-stream');
-    stream = new Stream({
-        streamUrl: 'rtsp://' + username + ':' + password + '@' + ip_address +':554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif',
-        wsPort: 9999    
-    });
+configs.cameras.forEach(c => {
+    new Stream({
+        streamUrl: 'rtsp://' + c.username + ':' + c.password + '@' + c.ip_address + ':554/live/ch1',
+        wsPort: c.websocket,
+        ffmpegOptions: {
+            '-r': 30
+        }
+    })
+});
