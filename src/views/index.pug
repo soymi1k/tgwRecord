@@ -1,0 +1,10 @@
+extends layout 
+
+block content
+    each cam, index in cameras
+            div 
+                canvas(id='channel' + index, width='auto', height='auto')
+                script.
+                    var canvas = document.getElementById("#{'channel' + index}");
+                    var websocket = new WebSocket("#{'ws://127.0.0.1:' + cam.websocket}");
+                    var player = new jsmpeg(websocket, {canvas, autoplay: true, loop:false});
