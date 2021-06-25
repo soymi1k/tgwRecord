@@ -1,4 +1,4 @@
-# Steaming IP Camera Nodejs
+# Streaming IP Camera Nodejs
 
 Open source project of real time streaming (~30 fps) IP/Network security camera on web browser using NodeJS
 
@@ -15,6 +15,7 @@ What things you need to install the software and how to install them
 * [Git](https://git-scm.com/downloads) - free and open source distributed version control system 
 * [Node.js](https://nodejs.org/en/) - Node.js >= 10.15.0
 * [FFmpeg](https://ffmpeg.zeranoe.com/builds/) - Multimedia framework to decode, encode, transcode, mux, demux, stream, filter and play
+* [ImageMagick](https://imagemagick.org) - Free and open source cross-platform software suite for displaying, creating, converting, modifying and editing raster images.
 
 ### Installing
 
@@ -30,6 +31,7 @@ git clone https://github.com/xpcrts/Steaming-IP-Camera-Nodejs
 * [Node.js](https://nodejs.org/en/) - Node.js >= 10.15.0
 4. Download and install pre-build FFMPEG Builds on your local machine (Download Build)
 * [FFmpeg](https://ffmpeg.zeranoe.com/builds/) - Multimedia framework to decode, encode, transcode, mux, demux, stream, filter and play<br />
+* [ImageMagick](https://imagemagick.org/script/download.php) - Free and open source cross-platform software suite for displaying, creating, converting, modifying and editing raster images.
 * Copy the FFMPEG Zip folder you have just downloaded, paste it into C: drive for simplicity and unzip it.
 * Rename the file to <strong>ffmpeg</strong> for simpicity
 * After unzipped the file, navigate ffmpeg/bin <br/>
@@ -47,38 +49,22 @@ h. New<br/>
 i. Paste this
 ```C:\ffmpeg\bin```<br/>
 j. OK (3 times)<br /><br/>
-5. NPM install node-onvif
+5. NPM install node-onvif<br/><s>npm install node-onvif -s</s> Use node-onvif included in this repo<br/>
+6.NPM install node-rtsp-stream<br/><s>npm i node-rtsp-stream -s</s> Use node-rtsp-stream included in this repo<br/>
+7. Change directory to /src and install node packages for Express.js server
 ```
-npm install node-onvif -s
-```
-6.NPM install node-rtsp-stream<br/>
-```
-npm i node-rtsp-stream -s
-```
-7.NPM install http-server<br/>
-```
-npm install http-server -g
+cd /src
+npm i
 ```
 
-## Running the tests
+## Running the server
 
-1. In the repository, open <i>app.js</i> file
-* Change IP address to your camera IP address
-* Username of your network camera
-* Password of your network camera<br/>
-2. Open one command prompt/terminal, navigate to <strong>Streaming-IP-Camera-Nodejs/src</strong> directory and type:
+1. Create a file called cameras.config.json in the root of the project and create an array of camera config objects that includes camera IP address, camera username, camera password and a unique websocket number (see cameras.example.json)
+2. Change directory to source. After installing node packages (Step 7 above), preview streaming cameras by typing
 ```
-http-server
+node server.js
 ```
-hit enter to run<br /><br/>
-3. Open another command prompt/terminal, on the same directory path and type: 
-```
-node app.js
-```
-hit enter to run<br /><br/>
-Now keep those two terminal up and running<br/><br/>
-<strong>Preview Streaming Camera on web browser by go to this URL:<br/></strong>
-> [127.0.0.1:8000](http://127.0.0.1:8080/)<br/>
+and visit [http://localhost:3000](http://localhost:3000]) in a web browser.
 
 You are ready to go.
 
@@ -93,13 +79,10 @@ Please read [CONTRIBUTING.md](https://github.com/xpcrts/Steaming-IP-Camera-Nodej
 * Improve streaming resolution quality
 * Decrease streaming latency 
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/xpcrts/Steaming-IP-Camera-Nodejs/tags). 
-
 ## Authors
 
-* **Phok Chanrithisak** - [xpcrts](https://github.com/xpcrts)
+* Original code by **Phok Chanrithisak** - [xpcrts](https://github.com/xpcrts)
+* **Christopher Ochsenreither** -[ochsec](https://github.com/ochsec)
 
 See also the list of [contributors](https://github.com/xpcrts/Steaming-IP-Camera-Nodejs/graphs/contributors) who participated in this project.
 
