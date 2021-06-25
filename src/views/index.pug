@@ -1,9 +1,11 @@
 extends layout 
 
 block content
-    each cam, index in cameras
-            div 
+    div(class="row", style="margin-top: 10px;")
+        each cam, index in cameras
+            div(class="col order-" + index, style="margin-top: 10px;")
                 canvas(id='channel' + index, width='auto', height='auto')
+                span #{cam.ip_address}
                 script.
                     var canvas = document.getElementById("#{'channel' + index}");
                     var websocket = new WebSocket("#{'ws://127.0.0.1:' + cam.websocket}");
