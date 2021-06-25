@@ -2,6 +2,8 @@
 
 Open source project of real time streaming (~30 fps) IP/Network security camera on web browser using NodeJS
 
+<img src="https://raw.githubusercontent.com/ochsec/Streaming-IP-Camera-Nodejs/master/screenshot.png" alt="screenshot" width="600" />
+
 ## Getting Started
 
 These instructions will get you a copy of the project to make it up and running on your local machine for development and testing purposes.
