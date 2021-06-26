@@ -1,6 +1,6 @@
 # Streaming IP Camera Nodejs
 
-Open source project of real time streaming (~30 fps) IP/Network security camera on web browser using NodeJS
+Open source project of real time streaming (~30 fps) IP/Network security camera on web browser using NodeJS. Records streams to files on disk when motion events occur.
 
 <img src="https://raw.githubusercontent.com/ochsec/Streaming-IP-Camera-Nodejs/master/screenshot.png" alt="screenshot" width="600" />
 
