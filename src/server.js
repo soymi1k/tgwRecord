@@ -1,6 +1,5 @@
-const configs = require('../cameras.config.json');
+const settings = require('../settings.json');
 const Stream = require('node-rtsp-stream');
-const onvifEvents = require('node-onvif-events');
 const Recorder = require('node-rtsp-recorder').Recorder;
 const express = require('express');
 const app = express();
@@ -9,7 +8,7 @@ const port = 3000;
 app.use(express.static('public'));
 app.set('view engine', 'pug');
 
-configs.cameras.forEach(c => {
+settings.cameras.forEach(c => {
     const streamUrl = 'rtsp://' + c.username + ':' + c.password + '@' + c.ip_address + ':554/live/ch1';
 
     // ffmpeg stream for viewing in browser canvas
@@ -24,42 +23,26 @@ configs.cameras.forEach(c => {
         }
     })
 
-    if (c.onvif) {
-        // recorder object to record stream to file
-        var rec = new Recorder({
-            url: streamUrl,
-            timeLimit: 60,
-            folder: '../motion_captures',
-            name: c.id,
-        });
+    // recorder object to record stream to file
+    var rec = new Recorder({
+        url: streamUrl,
+        timeLimit: 60,
+        folder: settings.saveDir,
+        name: c.username,
+    });
 
-        const options = {
-            id: c.id,
-            hostname: c.ip_address,
-            username: c.username,
-            password: c.password,
-            port: c.onvif
-        };
+    const options = {
+        id: c.id,
+        hostname: c.ip_address,
+        username: c.username,
+        password: c.password,
+    };
 
-        const startMotion = async () => {
-            const detector = await onvifEvents.MotionDetector.create(options.id, options);
-            detector.listen(motion => {
-                if (motion) {
-                    console.log(new Date(), '>> Motion Detected');
-                    rec.startRecording();
-                } else {
-                    console.log(new Date(), '>> Motion Stopped');
-                    rec.stopRecording();
-                }
-            });
-        };
-
-        startMotion();
-    }
+    rec.startRecording();
 });
 
 app.get('/', function(req, res) {
-    res.render('index', { cameras: configs.cameras });
+    res.render('index', { cameras: settings.cameras });
 });
 
 app.listen(port, () => console.log('App listening at http://localhost:' + port));

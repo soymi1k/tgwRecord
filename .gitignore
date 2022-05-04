@@ -1,3 +1,6 @@
-cameras.config.json
+settings.json
+node_modules
 src/node_modules
 motion_captures
+tests
+.DS_Store
