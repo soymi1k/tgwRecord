@@ -1,0 +1,19 @@
+{
+    "cameras": [
+        {
+            "ip_address": "192.168.1.37",
+            "username": "admin",
+            "password": "Tgw123456.",
+            "websocket": 9991,
+            "alias": "enter"
+        },
+        {
+            "ip_address": "192.168.1.38",
+            "username": "admin",
+            "password": "Tgw123456.",
+            "websocket": 9992,
+            "alias": "exit"
+        }
+    ]
+    
+}

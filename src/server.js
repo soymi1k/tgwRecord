@@ -1,4 +1,4 @@
-const settings = require('../settings.json');
+const settings = require('../cameras.config.json');
 const Stream = require('node-rtsp-stream');
 const Recorder = require('node-rtsp-recorder').Recorder;
 const express = require('express');
@@ -9,7 +9,7 @@ app.use(express.static('public'));
 app.set('view engine', 'pug');
 
 settings.cameras.forEach(c => {
-    const streamUrl = 'rtsp://' + c.username + ':' + c.password + '@' + c.ip_address + ':554/live/ch1';
+    const streamUrl = 'rtsp://' + c.username + ':' + c.password + '@' + c.ip_address + ':554/profile1';
 
     // ffmpeg stream for viewing in browser canvas
     new Stream({
@@ -26,9 +26,8 @@ settings.cameras.forEach(c => {
     // recorder object to record stream to file
     var rec = new Recorder({
         url: streamUrl,
-        timeLimit: 60,
-        folder: settings.saveDir,
-        name: c.username,
+        timeLimit: 10,
+        name: c.alias,
     });
 
     const options = {

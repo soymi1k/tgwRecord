@@ -4,3 +4,4 @@ src/node_modules
 motion_captures
 tests
 .DS_Store
+src/media
